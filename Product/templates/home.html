@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="https://fonts.cdnfonts.com/css/poppins" />
+		<link rel="stylesheet" href="{% static 'style.css' %}?v=2" />
+		<title>Shopify Product Importer</title>
+	</head>
+	<body>
+		<div class="hero">
+			<div class="cover-hero"></div>
+			<video autoplay muted loop>
+				<source src="{% static 'video.mp4' %}" type="video/mp4" />
+				Your browser does not support the video tag.
+			</video>
+			<div class="hero-text">
+				<h1>Shopify Product Importer</h1>
+				<p>Import your products easily from Shopify.</p>
+			</div>
+		</div>
+
+		<div class="input-section">
+			<h2>Enter Your Shopify Store URL</h2>
+			<form method="POST" action="{% url 'home' %}">
+				{% csrf_token %}
+				<input
+					type="text"
+					name="shopify_url"
+					placeholder="Enter the URL"
+					required
+				/>
+				<button type="submit" class="btn">Import Products</button>
+			</form>
+			{% if csv_file_url %}
+			<div class="download-box">
+				<img src="{% static 'csv-icon.png' %}" alt="CSV File" class="csv-icon">
+				<p>{{ product_count }} products imported successfully.</p>
+				<div class="file-btn">
+				<a href="{{ csv_file_url }}" download class="btn download">Download CSV</a>
+				<a href="{% url 'cancel_download' %}?file={{ csv_filename }}" class="btn cancel">Cancel</a>
+			</div>
+			</div>
+			{% endif %}
+		</div>
+
+		{% if products %}
+		<div class="product-section">
+			<h2>{{ product_count }} Products Imported</h2>
+			<div class="product-grid">
+				{% for product in products %}
+					<div class="product-card">
+						<img src="{{ product.image }}" alt="{{ product.title }}" />
+						<h3>{{ product.title }}</h3>
+						<p>Vendor: {{ product.vendor }}</p>
+						<p>Price: ${{ product.price }}</p>
+						<p>SKU: {{ product.sku }}</p>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+		{% endif %}
+	</body>
+</html>
