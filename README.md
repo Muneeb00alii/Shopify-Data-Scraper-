@@ -26,25 +26,20 @@ A small **Django-based web app** that fetches products from a **public Shopify s
 ## 🏃‍♂️ Quick Start (Development)
 
 ### 1️⃣ Create and Activate Virtual Environment
-```bash
 python -m venv .venv
 .venv\Scripts\activate   # Windows
 # source .venv/bin/activate  # macOS/Linux
 
 ### 2️⃣ Install Dependencies
-```bash
 pip install django requests
 
 ### 3️⃣ Run Migrations
-```bash
 python manage.py migrate
 
 ### 4️⃣ Start Development Server
-```bash
 python manage.py runserver
 
 ### 5️⃣ Open in Browser
-```bash
 Go to *http://127.0.0.1:8000/* and enter the Shopify store URL
 
 ##👨‍💻 Author
