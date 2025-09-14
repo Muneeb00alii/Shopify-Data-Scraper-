@@ -42,7 +42,6 @@ python manage.py runserver
 ### 5️⃣ Open in Browser
 Go to *http://127.0.0.1:8000/* and enter the Shopify store URL
 
-##👨‍💻 Author
-
+👨‍💻 Author
 Muneeb Ali
 📧 muneeb00ali@gmail.com
